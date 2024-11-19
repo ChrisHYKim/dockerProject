@@ -1,0 +1,38 @@
+# .bashrc
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+# User specific environment
+if ! [[ "$PATH" =~ "$HOME/.local/bin:$HOME/bin:" ]]
+then
+    PATH="$HOME/.local/bin:$HOME/bin:$PATH"
+fi
+export PATH
+
+# Uncomment the following line if you don't like systemctl's auto-paging feature:
+# export SYSTEMD_PAGER=
+
+# User specific aliases and functions
+ 
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+export PS1='\[\e[34;1m\][\u@\h\[\e[33;1m\] \w]\$ \[\e[m\]'
+
+#
+# Sfecific configuration
+#
+export PS1='\[\e[31;1m\][\u@\h\[\e[33;1m\] \w]$ \[\e[m\]'
+
+#
+# Docker Configution Alias
+#
+alias irm='docker rmi -f $(docker images -aq)'
+alias crm='docker rm -f $(docker ps -aq)'
+alias vrm='docker rm -f $(docker volume ls -q)'
+alias vin='docker volume inspect'
+alias vls='docker volume ls'
+alias din='docker inspect'
